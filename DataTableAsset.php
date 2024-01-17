@@ -43,4 +43,7 @@ class DataTableAsset extends AssetBundle
     public $cssOptions = [
         'position' => \yii\web\View::POS_HEAD,
     ];
+    public $depends = [
+        'yii\web\JqueryAsset', 
+    ];
 }
