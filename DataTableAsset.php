@@ -9,9 +9,9 @@ class DataTableAsset extends AssetBundle
     /**
      * @var array the CSS files that this bundle contains.
      */
+    public $sourcePath = '@bower/';
     public $css = [
         'assets/css/jquery.dataTables.css',
-        // Add more CSS files if needed
     ];
 
     /**
