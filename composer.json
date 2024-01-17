@@ -24,7 +24,7 @@
     },
     "autoload": {
         "psr-4": {
-      "rashedalkhatib\\yii2-datatables\\": ["assets/js/" , "assets/css/"]
+      "rashedalkhatib\\datatables\\": ""
         }
     },
     "extra": {
