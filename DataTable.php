@@ -1,6 +1,6 @@
 <?php
 
-namespace RashedAlkhatib\DataTable;
+namespace rashedalkhatib\datatables;
 
 use yii\base\Widget;
 use yii\helpers\Html;

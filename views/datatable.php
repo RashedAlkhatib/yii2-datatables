@@ -1,6 +1,6 @@
 <?php
 
-use vendor\name\DataTable\DataTable;
+use rashedalkhatib\datatable\DataTable;
 use yii\helpers\Json;
 
 // Render the DataTable widget with options and clientOptions

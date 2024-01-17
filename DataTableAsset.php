@@ -1,6 +1,6 @@
 <?php
 
-namespace RashedAlkhatib\DataTable;
+namespace rashedalkhatib\datatables;
 
 use yii\web\AssetBundle;
 
@@ -24,7 +24,8 @@ class DataTableAsset extends AssetBundle
         'assets/js/jszip.min.js',
         'assets/js/pdfmake.min.js',
         'assets/js/vfs_fonts.js',
-        'assets/js/buttons.html5.min.js'
+        'assets/js/buttons.html5.min.js',
+        'assets/js/custom.js'
         // Add more JavaScript files if needed
     ];
 
