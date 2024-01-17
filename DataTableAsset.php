@@ -18,7 +18,7 @@ class DataTableAsset extends AssetBundle
      * @var array the JavaScript files that this bundle contains.
      */
     public $js = [
-        'assets/js/jquery.dataTables.js',
+        '@bower/assets/js/jquery.dataTables.js',
         'assets/js/dataTables.buttons.min.js',
         'assets/js/buttons.flash.min.js',
         'assets/js/jszip.min.js',
