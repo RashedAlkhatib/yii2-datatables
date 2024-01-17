@@ -6,6 +6,8 @@ use yii\web\AssetBundle;
 
 class DataTableAsset extends AssetBundle
 {
+
+    public $sourcePath = '@vendor/rashedalkhatib/yii2-datatables';
     /**
      * @var array the CSS files that this bundle contains.
      */
