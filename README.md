@@ -1,4 +1,4 @@
-# DataTable Widget Usage
+# DataTable Widget
 
 ## Overview
 
