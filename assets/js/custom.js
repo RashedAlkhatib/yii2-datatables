@@ -1,6 +1,6 @@
 
 (function($) {
-    function newexportaction(e, dt, button, config) {
+    function exportAll(e, dt, button, config) {
         var self = this;
         var oldStart = dt.settings()[0]._iDisplayStart;
         dt.one('preXhr', function (e, s, data) {
