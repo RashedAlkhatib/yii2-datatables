@@ -4,6 +4,12 @@ namespace rashedalkhatib\datatables;
 
 use yii\web\AssetBundle;
 
+/**
+ * Class DataTableAsset
+ * @package rashedalkhatib\datatables
+ * @author Rashed Alkhatib
+ * @email alkhatib.rashed@gmail.com
+ */
 class DataTableAsset extends AssetBundle
 {
 
@@ -19,15 +25,14 @@ class DataTableAsset extends AssetBundle
      * @var array the JavaScript files that this bundle contains.
      */
     public $js = [
-        'assets/js/jquery.dataTables.js',
+        'assets/js/jquery.dataTables.min.js',
         'assets/js/dataTables.buttons.min.js',
         'assets/js/buttons.flash.min.js',
         'assets/js/jszip.min.js',
         'assets/js/pdfmake.min.js',
-        'assets/js/vfs_fonts.js',
+        'assets/js/vfs_fonts.min.js',
         'assets/js/buttons.html5.min.js',
-        'assets/js/custom.js'
-        // Add more JavaScript files if needed
+        'assets/js/custom.min.js'
     ];
 
     /**
