@@ -20,6 +20,7 @@ class DataTable extends Widget
     public $pageLength = 10;
     public $dom = 'Btip';
     public $buttons = [];
+    public $id ;
 
     public function run()
     {
@@ -28,7 +29,7 @@ class DataTable extends Widget
 
     protected function registerClientScript()
     {
-        $id = $this->getId();
+        $id = $this->id;
         $options = Json::encode([
             'ajax' => $this->ajaxConfig,
             'columns' => $this->columns,
