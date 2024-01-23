@@ -55,9 +55,19 @@ $ajaxConfig = [
     'bdestroy' => true,
     'type' => 'POST',
     'data' => new JsExpression('function(d) {
-        var searchForm = $("' . $searchFormSelector . '").serializeArray();
-        // Add other data manipulation logic as needed
-        return searchForm;
+            var searchForm = $('body').find('#searchForm').serializeArray();
+            
+            searchForm[searchForm.length] = { name: 'YourModel[page]', value: d.start }; // required
+            searchForm[searchForm.length] = { name: 'YourModel[length]', value: d.length }; // required
+            searchForm[searchForm.length] = { name: 'YourModel[draw]', value: d.draw }; // required
+            
+            var order = {
+                'attribute': d.columns[d.order[0]['column']]['data'],
+                'dir': d.order[0]['dir']
+            }; // required
+            
+            searchForm[searchForm.length] = { name: 'YourModel[order]', value: JSON.stringify(order) };
+            return searchForm;
     }'),
     'dataSrc' => new JsExpression('function(d) {
         var searchForm = $("' . $searchFormSelector . '").serializeArray();
@@ -82,6 +92,7 @@ DataTable::widget([
 ]);
 
 // The HTML container for your DataTable
+echo '<form id="searchForm">// your inputs </form>';
 echo '<table id="yourDataTable" class="display"></table>';
 ```
 ## Usage Example (Java Script)
@@ -109,14 +120,14 @@ $('#yourDataTable').DataTable({
             // Custom function for sending additional parameters to the server
             var searchForm = $('body').find('#searchForm').serializeArray();
             
-            searchForm[searchForm.length] = { name: "YourModel[page]", value: d.start };
-            searchForm[searchForm.length] = { name: "YourModel[length]", value: d.length };
-            searchForm[searchForm.length] = { name: "YourModel[draw]", value: d.draw };
+            searchForm[searchForm.length] = { name: "YourModel[page]", value: d.start }; // required
+            searchForm[searchForm.length] = { name: "YourModel[length]", value: d.length }; // required
+            searchForm[searchForm.length] = { name: "YourModel[draw]", value: d.draw }; // required
             
             var order = {
                 'attribute': d.columns[d.order[0]['column']]['data'],
                 'dir': d.order[0]['dir']
-            };
+            }; // required
             
             searchForm[searchForm.length] = { name: "YourModel[order]", value: JSON.stringify(order) };
             return searchForm;
@@ -164,7 +175,8 @@ $('#yourDataTable').DataTable({
     }],
 });
 ```
-#### back end
+### application back end
+#### these params should be sent to the API
 ```injectablephp
 // in your HTTP request you want to include these params 
    $_postData = [
@@ -174,6 +186,16 @@ $('#yourDataTable').DataTable({
    'order' => $this->order,
    // add your custom params .....
    ];
+```
+#### these params should be returned to the Datatable endpoint
+```phpregexp
+return $this->asJson(
+                    [
+                        'data' => $_scoreData->data,
+                        'draw' => $_scoreSearchForm->draw,
+                        'recordsTotal' => $_scoreData->count, 
+                        'recordsFiltered' => $_scoreData->count
+                ]);
 ```
 ## Usage API Side
 #### yourEndPoint action
