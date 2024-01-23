@@ -16,6 +16,74 @@ The DataTable widget is used to create interactive and dynamic data tables. The 
                 'yii\bootstrap\BootstrapPluginAsset',
                 'rashedalkhatib\datatables\DataTableAsset'
         ];
+
+## Usage Example (PHP Widget)
+### - application side
+```phpregexp
+$searchFormSelector = '#searchForm';
+$ajaxUrl = Url::to(['api/yourEndPoint']); // Adjust the URL based on your routes
+
+// Define your DataTable columns
+$columns = [
+    [
+        'title' => 'ID',
+        'data' => 'id',
+        'visible' => true,
+        'render' => new JsExpression('function(data, type, row) {
+            return "demo";
+        }'),
+    ],
+];
+
+// Configure other DataTable parameters
+$processing = true;
+$serverSide = true;
+$pageLength = 10;
+$dom = 'Btip';
+$buttons = [
+    [
+        'extend' => 'excel',
+        'text' => 'Excel',
+        'titleAttr' => 'Excel',
+        'action' => new JsExpression('exportAll') // this is required 
+    ],
+];
+
+// Configure Ajax settings
+$ajaxConfig = [
+    'url' => $ajaxUrl,
+    'bdestroy' => true,
+    'type' => 'POST',
+    'data' => new JsExpression('function(d) {
+        var searchForm = $("' . $searchFormSelector . '").serializeArray();
+        // Add other data manipulation logic as needed
+        return searchForm;
+    }'),
+    'dataSrc' => new JsExpression('function(d) {
+        var searchForm = $("' . $searchFormSelector . '").serializeArray();
+        if (d.validation) {
+            searchForm.yiiActiveForm("updateMessages", d.validation, true);
+            return [];
+        }
+        return d.data;
+    }'),
+];
+
+// Use the DataTableWidget with configured parameters
+DataTable::widget([
+    'id' => 'yourDataTable',
+    'ajaxConfig' => $ajaxConfig,
+    'columns' => $columns,
+    'processing' => $processing,
+    'serverSide' => $serverSide,
+    'pageLength' => $pageLength,
+    'dom' => $dom,
+    'buttons' => $buttons,
+]);
+
+// The HTML container for your DataTable
+echo '<table id="yourDataTable" class="display"></table>';
+```
 ## Usage Example (Java Script)
 ### - application side
 #### front end
@@ -107,7 +175,7 @@ $('#yourDataTable').DataTable({
    // add your custom params .....
    ];
 ```
-### - API Side
+## Usage API Side
 #### yourEndPoint action
 ```injectablephp
     public function actionYourEndPoint()
