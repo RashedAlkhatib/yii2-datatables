@@ -1,3 +1,5 @@
+
+(function($) {
     function exportAll(e, dt, button, config) {
         var self = this;
         var oldStart = dt.settings()[0]._iDisplayStart;
@@ -45,3 +47,4 @@
         // Requery the server with the new one-time export settings
         dt.ajax.reload();
     }
+})
