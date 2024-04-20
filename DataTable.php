@@ -15,6 +15,7 @@ class DataTable extends Widget
 {
     public $ajaxConfig;
     public $columns = [];
+    public $data = [];
     public $processing = true;
     public $serverSide = true;
     public $pageLength = 10;
@@ -31,6 +32,7 @@ class DataTable extends Widget
     {
         $id = $this->id;
         $options = Json::encode([
+            'data' => $this->data,
             'ajax' => $this->ajaxConfig,
             'columns' => $this->columns,
             'processing' => $this->processing,
