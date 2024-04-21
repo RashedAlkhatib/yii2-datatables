@@ -30,6 +30,14 @@ class DataTable extends Widget
 
     protected function registerClientScript()
     {
+
+         foreach ($this->columns as &$column) {
+            if (isset($column['render']) && is_callable($column['render'])) {
+                $column['render'] = new \yii\web\JsExpression($column['render']);
+            }
+        }
+
+        
         $id = $this->id;
         $options = Json::encode([
             'data' => $this->data,
